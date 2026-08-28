@@ -39,6 +39,10 @@
   --curio-1: #14b8a6; --curio-2: #06b6d4; --curio-3: #1e40af;
   --amb-1: #5b21b6; --amb-2: #0f1442; --amb-3: #d946ef;
   --contact-1: #0a0e1a; --contact-2: #ff8fab; --contact-3: #22d3ee;
+  --helper-1: #f5a524; --helper-2: #ff8fab; --helper-3: #fbbf24;
+  --friends-1: #3b82f6; --friends-2: #8b5cf6; --friends-3: #22d3ee;
+  --teachers-1: #d4af37; --teachers-2: #ffb3c6; --teachers-3: #8b5cf6;
+  --parents-1: #ff8fab; --parents-2: #fbbf24; --parents-3: #6ea8ff;
 }
 
 *,*::before,*::after{ box-sizing:border-box; }
@@ -130,6 +134,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 #curiosity.themed{ --sec-1:var(--curio-1); --sec-2:var(--curio-2); --sec-3:var(--curio-3); }
 #ambition.themed{ --sec-1:var(--amb-1); --sec-2:var(--amb-2); --sec-3:var(--amb-3); }
 #contact.themed{ --sec-1:var(--contact-1); --sec-2:var(--contact-2); --sec-3:var(--contact-3); }
+#helper.themed{ --sec-1:var(--helper-1); --sec-2:var(--helper-2); --sec-3:var(--helper-3); }
+#friends.themed{ --sec-1:var(--friends-1); --sec-2:var(--friends-2); --sec-3:var(--friends-3); }
+#teachers.themed{ --sec-1:var(--teachers-1); --sec-2:var(--teachers-2); --sec-3:var(--teachers-3); }
+#parents.themed{ --sec-1:var(--parents-1); --sec-2:var(--parents-2); --sec-3:var(--parents-3); }
 
 /* ============================================================================
    3. TOPIC BACKGROUND DECORATIONS (subtle, behind content, pointer-events none)
@@ -215,7 +223,7 @@ header#site-nav{ position:fixed; top:0; left:0; right:0; z-index:200; padding:.9
 header#site-nav.scrolled .nav-inner{ background:rgba(8,10,20,0.82); box-shadow:0 12px 30px -14px rgba(0,0,0,.6); }
 .brand{ font-family:Georgia,serif; font-weight:700; font-size:1.05rem; display:flex; align-items:baseline; gap:.5rem; }
 .brand .sub{ font-size:.62rem; letter-spacing:.28em; color:var(--ink-faint); text-transform:uppercase; }
-.nav-links{ display:flex; align-items:center; gap:1.5rem; }
+.nav-links{ display:flex; align-items:center; gap:1.05rem; }
 .nav-links a{ font-size:.83rem; color:var(--ink-dim); position:relative; padding:.3rem .05rem; transition:color .3s var(--ease); }
 .nav-links a::after{ content:''; position:absolute; left:0; bottom:-2px; width:0; height:1.5px; background:linear-gradient(90deg,var(--sakura),#8b5cf6); transition:width .35s var(--ease); }
 .nav-links a:hover{ color:var(--ink); }
@@ -242,7 +250,7 @@ header#site-nav.scrolled .nav-inner{ background:rgba(8,10,20,0.82); box-shadow:0
 .mobile-panel.open{ transform:translateY(0); opacity:1; pointer-events:auto; }
 .mobile-panel a{ padding:.72rem .5rem; font-size:1rem; border-radius:10px; color:var(--ink-dim); }
 .mobile-panel a:hover, .mobile-panel a.active{ background:#141833; color:var(--ink); }
-@media (max-width:920px){ .nav-links,.nav-cta{ display:none; } .nav-toggle{ display:flex; } }
+@media (max-width:1100px){ .nav-links,.nav-cta{ display:none; } .nav-toggle{ display:flex; } }
 
 /* ============================================================================
    7. GLASS CARD BASE
@@ -354,6 +362,38 @@ header#site-nav.scrolled .nav-inner{ background:rgba(8,10,20,0.82); box-shadow:0
 .big-card h3{ font-size:1.35rem; margin-bottom:.5rem; }
 
 /* ============================================================================
+   12b. FRIENDS / ONLINE FRIENDS / TEACHERS
+   ============================================================================ */
+.friend-card{ display:flex; flex-direction:column; gap:.4rem; }
+.friend-card .friend-name{ font-family:Georgia,serif; font-size:1.1rem; font-weight:700; color:var(--ink); }
+.friend-card .friend-meta{ font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--sec-2); margin-bottom:.3rem; }
+
+.online-friends-panel{
+  margin-top:2.2rem; padding:2rem; border-radius:var(--radius);
+  border:1px dashed rgba(34,211,238,.35);
+  background:linear-gradient(160deg, rgba(34,211,238,.07), rgba(16,185,129,.05));
+}
+.online-friends-panel h3{ font-family:Georgia,serif; font-size:1.2rem; margin-bottom:.3rem; color:#67e8f9; }
+.online-friends-panel .section-sub{ margin-bottom:1.2rem; }
+.online-friend-list{ display:flex; flex-wrap:wrap; gap:.7rem; }
+.online-friend-chip{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.55rem 1rem; border-radius:999px; font-size:.86rem; font-weight:600;
+  background:rgba(34,211,238,.10); border:1px solid rgba(34,211,238,.35); color:#a5f3fc;
+  transition:transform .3s var(--ease), background .3s var(--ease);
+}
+.online-friend-chip:hover{ transform:translateY(-3px); background:rgba(34,211,238,.18); }
+.online-friend-chip .dot{ width:7px; height:7px; border-radius:50%; background:#22d3ee; box-shadow:0 0 8px 2px rgba(34,211,238,.7); }
+
+.teacher-card{ max-width:720px; margin:0 auto; padding:2.4rem clamp(1.6rem,5vw,3rem); text-align:center; }
+.teacher-card p.teacher-desc{ color:var(--ink-dim); font-size:1.02rem; max-width:56ch; margin:0 auto 1.4rem; }
+.teacher-names{ display:flex; flex-wrap:wrap; justify-content:center; gap:.7rem; }
+.teacher-names span{
+  padding:.55rem 1.1rem; border-radius:999px; font-size:.88rem; font-weight:600;
+  background:rgba(212,175,55,.12); border:1px solid rgba(212,175,55,.4); color:#f2d675;
+}
+
+/* ============================================================================
    13. POEMS
    ============================================================================ */
 .poem-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
@@ -442,6 +482,25 @@ header#site-nav.scrolled .nav-inner{ background:rgba(8,10,20,0.82); box-shadow:0
 .ambition-ring.a2{ width:460px; height:460px; top:50%; left:50%; transform:translate(-50%,-50%); border-style:dashed; animation:spin 60s linear infinite reverse; }
 @keyframes orbit-float{ 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-22px) scale(1.4); } }
 .ambition p{ position:relative; z-index:2; font-family:Georgia,serif; font-style:italic; font-size:clamp(1.2rem,2.6vw,1.7rem); line-height:1.65; max-width:820px; margin:0 auto; }
+.ambition-flow{
+  position:relative; z-index:2; display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:.6rem; margin-top:2.2rem;
+}
+.ambition-flow span{ font-size:.92rem; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:#f3d9ff; }
+.ambition-flow span.arrow{ color:var(--sakura); font-weight:400; opacity:.7; }
+.ambition-flow span:not(.arrow){
+  padding:.5rem 1rem; border-radius:999px; background:rgba(217,70,239,.12); border:1px solid rgba(217,70,239,.35);
+  animation:flow-pulse 3.2s ease-in-out infinite;
+}
+.ambition-flow span:nth-of-type(1){ animation-delay:0s; }
+.ambition-flow span:nth-of-type(3){ animation-delay:.4s; }
+.ambition-flow span:nth-of-type(5){ animation-delay:.8s; }
+.ambition-flow span:nth-of-type(7){ animation-delay:1.2s; }
+.ambition-flow span:nth-of-type(9){ animation-delay:1.6s; }
+@keyframes flow-pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(217,70,239,0); } 50%{ box-shadow:0 0 14px 2px rgba(217,70,239,.35); } }
+.footer-thanks{ text-align:center; margin-top:1.6rem; font-family:Georgia,serif; font-style:italic; color:var(--ink-dim); font-size:1.05rem; }
+.contact-detail .value a, .contact-detail a.value{ color:var(--ink); transition:color .3s var(--ease); }
+.contact-detail .value a:hover, .contact-detail a.value:hover{ color:var(--sec-2); }
 
 /* ============================================================================
    20. CONTACT
@@ -511,13 +570,16 @@ footer{ border-top:1px solid var(--border); padding:3rem 0 2rem; position:relati
     <a href="#home" class="brand">Avijit.S <span class="sub">Identity</span></a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#home" data-nav>Home</a>
-      <a href="#profile" data-nav>Profile</a>
+      <a href="#parents" data-nav>Parents</a>
+      <a href="#profile" data-nav>About</a>
       <a href="#favorites" data-nav>Favorites</a>
-      <a href="#poems" data-nav>Poems</a>
+      <a href="#friends" data-nav>Friends</a>
+      <a href="#teachers" data-nav>Teachers</a>
+      <a href="#poems" data-nav>Poetry</a>
       <a href="#works" data-nav>Works</a>
       <a href="#education" data-nav>Education</a>
       <a href="#skills" data-nav>Skills</a>
-      <a href="#curiosity" data-nav>Curiosity</a>
+      <a href="#curiosity" data-nav>Interests</a>
       <a href="#ambition" data-nav>Ambition</a>
       <a href="#contact" data-nav>Contact</a>
     </nav>
@@ -530,14 +592,17 @@ footer{ border-top:1px solid var(--border); padding:3rem 0 2rem; position:relati
 
 <div class="mobile-panel" id="mobilePanel">
   <a href="#home" data-nav>Home</a>
-  <a href="#profile" data-nav>Profile</a>
+  <a href="#parents" data-nav>Parents</a>
+  <a href="#profile" data-nav>About</a>
   <a href="#favorites" data-nav>Favorites</a>
-  <a href="#poems" data-nav>Poems</a>
+  <a href="#friends" data-nav>Friends</a>
+  <a href="#teachers" data-nav>Teachers</a>
+  <a href="#poems" data-nav>Poetry</a>
   <a href="#works" data-nav>Works</a>
   <a href="#education" data-nav>Education</a>
   <a href="#strength" data-nav>Strength &amp; Weakness</a>
   <a href="#skills" data-nav>Skills</a>
-  <a href="#curiosity" data-nav>Curiosity</a>
+  <a href="#curiosity" data-nav>Interests</a>
   <a href="#ambition" data-nav>Ambition</a>
   <a href="#contact" data-nav>Contact</a>
 </div>
@@ -595,6 +660,31 @@ footer{ border-top:1px solid var(--border); padding:3rem 0 2rem; position:relati
   </section>
 
   <!-- ============================================================
+       PARENTS
+       ============================================================ -->
+  <section class="section themed" id="parents">
+    <div class="deco deco-dots" aria-hidden="true">
+      <span style="top:18%;left:12%;"></span><span style="top:58%;left:86%;animation-delay:.6s;"></span>
+    </div>
+    <div class="wrap section-inner">
+      <p class="eyebrow reveal" style="justify-content:center; display:flex;">Family</p>
+      <h2 class="section-title reveal" style="text-align:center;">Parents</h2>
+      <div class="big-two reveal-stagger" style="max-width:640px; margin:0 auto;">
+        <div class="glass card big-card">
+          <div class="card-icon">👨</div>
+          <h3>Father</h3>
+          <p>Biman Saha</p>
+        </div>
+        <div class="glass card big-card">
+          <div class="card-icon">👩</div>
+          <h3>Mother</h3>
+          <p>Anita Saha</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        DATE OF BIRTH
        ============================================================ -->
   <section class="section themed" id="dob">
@@ -622,24 +712,18 @@ footer{ border-top:1px solid var(--border); padding:3rem 0 2rem; position:relati
     <div class="deco deco-grid" aria-hidden="true"></div>
     <div class="wrap section-inner">
       <p class="eyebrow reveal">[ Profile ]</p>
-      <h2 class="section-title reveal">About Me</h2>
+      <h2 class="section-title reveal">Profile — About Me</h2>
 
       <div class="about-grid">
         <div class="about-text reveal">
-          <p>Currently in my second year pursuing my B.A. Municipality in Surya Sen College, Siliguri. I am deeply fascinated by how mathematical frameworks underpin modern technology and data structures.</p>
+          <p>Currently in my second year pursuing my B.A. municipality course at Surya Sen College, Siliguri. I am deeply fascinated by how mathematical frameworks underpin modern technology and data structures.</p>
           <p>Beyond equations, I keep a sharp eye on Indian politics and current affairs, analysing trends with a logical, data-driven mindset. I love turning abstract logic into functional code through web development.</p>
         </div>
         <div class="about-cards reveal-stagger">
           <div class="glass card">
-            <div class="card-icon">🏛️</div>
-            <span class="tag">Academics</span>
-            <h3>B.A. Municipality</h3>
-            <p>Second-year undergraduate studies at Surya Sen College, Siliguri.</p>
-          </div>
-          <div class="glass card">
             <div class="card-icon">🗳️</div>
             <span class="tag">Trend Analysis</span>
-            <h3>Politics &amp; Affairs — Analytical Thinking</h3>
+            <h3>Politics &amp; Affairs</h3>
             <p>Focus on political theory, public affairs and analytical thinking.</p>
           </div>
           <div class="glass card">
@@ -648,7 +732,31 @@ footer{ border-top:1px solid var(--border); padding:3rem 0 2rem; position:relati
             <h3>Web Development</h3>
             <p>Exploring patterns, technology and practical digital solutions.</p>
           </div>
+          <div class="glass card">
+            <div class="card-icon">📖</div>
+            <span class="tag">Continuous Knowledge &amp; Exploration</span>
+            <h3>Learning</h3>
+            <p>Reading, researching and exploring new ideas across technology, society and creativity.</p>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MOST HELPFUL PERSON
+       ============================================================ -->
+  <section class="section themed" id="helper">
+    <div class="deco deco-dots" aria-hidden="true">
+      <span style="top:20%;left:10%;"></span><span style="top:55%;left:85%;animation-delay:.7s;"></span>
+      <span style="top:75%;left:20%;animation-delay:1.3s;"></span>
+    </div>
+    <div class="wrap section-inner dob-wrap">
+      <div class="glass card dob-card reveal" style="max-width:600px;">
+        <div class="dob-icon">🤝</div>
+        <p class="eyebrow" style="justify-content:center;">Most Helpful Person</p>
+        <div class="dob-date" style="font-size:clamp(1.2rem,2.6vw,1.6rem);">Raju Roy — My Mama</div>
+        <p class="dob-text">My mama Raju Roy has been one of the most helpful and supportive people in my journey. When I need something, including a PC and other important things, he supports me whenever he can. I am genuinely grateful to him for doing so much for me.</p>
       </div>
     </div>
   </section>
@@ -665,7 +773,7 @@ footer{ border-top:1px solid var(--border); padding:3rem 0 2rem; position:relati
     <div class="wrap section-inner">
       <p class="eyebrow reveal">What moves me</p>
       <h2 class="section-title reveal">My Favorite Things</h2>
-      <p class="section-sub reveal">Two habits that quietly shape everything else on this page.</p>
+      <p class="section-sub reveal">I love learning new knowledge and exploring the world.</p>
 
       <div class="big-two reveal-stagger" style="margin-bottom:2.5rem;">
         <div class="glass card big-card">
@@ -684,37 +792,118 @@ footer{ border-top:1px solid var(--border); padding:3rem 0 2rem; position:relati
         <div class="glass card list-card">
           <div class="card-icon">🎮</div>
           <h3>Favorite Games</h3>
-          <ul><li>CODM</li><li>Free Fire</li><li>The Eyes Horror Game</li><li>Poppy Playtime</li><li>Minecraft</li></ul>
+          <ul><li>CODM</li><li>Free Fire</li><li>The Eyes</li><li>Poppy Playtime</li><li>Minecraft</li><li>Other games</li></ul>
         </div>
         <div class="glass card list-card">
           <div class="card-icon">🎬</div>
           <h3>Favorite Animation</h3>
-          <ul><li>Demon Slayer</li><li>Jujutsu Kaisen</li><li>Death Note</li></ul>
+          <ul><li>Demon Slayer</li><li>Jujutsu Kaisen</li><li>Death Note</li><li>Naruto</li><li>Doraemon</li><li>Pokémon</li><li>Beyblade</li><li>Other anime masterpieces</li></ul>
         </div>
         <div class="glass card list-card">
           <div class="card-icon">🤖</div>
           <h3>Favorite AI</h3>
-          <ul><li>ChatGPT</li><li>Gemini</li></ul>
+          <ul><li>ChatGPT</li><li>Gemini</li><li>Claude AI</li><li>Grok</li><li>Other AI chatbots</li></ul>
         </div>
         <div class="glass card list-card">
           <div class="card-icon">🛠️</div>
           <h3>Favorite Work</h3>
-          <ul><li>Website Design</li><li>Electrical Work</li></ul>
+          <ul><li>Website Design</li><li>Electrical Work</li><li>Computer Knowledge</li><li>Exploring New Knowledge</li></ul>
         </div>
         <div class="glass card list-card">
           <div class="card-icon">🎤</div>
-          <h3>Favorite Singer</h3>
-          <ul><li>Arijit Singh</li></ul>
+          <h3>Favorite Singers</h3>
+          <ul><li>Arijit Singh</li><li>Zubeen Garg</li><li>Pritam Chakraborty</li><li>Krishnakumar Kunnath</li><li>Others</li></ul>
         </div>
         <div class="glass card list-card">
           <div class="card-icon">✒️</div>
-          <h3>Favorite Writer</h3>
-          <ul><li>Rabindranath Tagore</li></ul>
+          <h3>Favorite Writers</h3>
+          <ul><li>Rabindranath Tagore</li><li>William Shakespeare</li><li>Others</li></ul>
         </div>
-        <div class="glass card list-card" style="grid-column: span 2;">
-          <div class="card-icon">🎓</div>
-          <h3>Favorite Teachers</h3>
-          <ul><li>Mounik Bhattacharyya Sir</li><li>Iswar Chandra Barman Sir</li><li>Our High School Sir and Mam</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FRIENDS
+       ============================================================ -->
+  <section class="section themed" id="friends">
+    <div class="deco deco-dots" aria-hidden="true">
+      <span style="top:12%;left:6%;"></span><span style="top:38%;left:92%;animation-delay:.5s;"></span>
+      <span style="top:70%;left:14%;animation-delay:1s;"></span><span style="top:85%;left:80%;animation-delay:1.5s;"></span>
+    </div>
+    <div class="wrap section-inner">
+      <p class="eyebrow reveal">Friends &amp; Connections</p>
+      <h2 class="section-title reveal">Friends</h2>
+      <p class="section-sub reveal">The people who've walked alongside different chapters of this journey.</p>
+
+      <div class="grid-auto reveal-stagger">
+        <div class="glass card friend-card">
+          <div class="card-icon">🧑‍🤝‍🧑</div>
+          <span class="friend-name">Amarjit Das</span>
+          <p>My first childhood friend. After my family sold our old house, we lost contact for some time. I later met him again during Kali Puja and we enjoyed spending time together.</p>
+        </div>
+        <div class="glass card friend-card">
+          <div class="card-icon">🌱</div>
+          <span class="friend-name">Abinash Sutradhar</span>
+          <p>A talented and experienced NSS volunteer associated with Siliguri College and someone I respect for his leadership and social-service involvement. I met him in Class 8.</p>
+        </div>
+        <div class="glass card friend-card">
+          <div class="card-icon">💻</div>
+          <span class="friend-name">Soumik Das</span>
+          <p>A talented friend interested in website design and generative AI. He is learning Python and is one of my close friends. I met him in Class 11.</p>
+        </div>
+        <div class="glass card friend-card">
+          <div class="card-icon">🙂</div>
+          <span class="friend-name">Sagar Saha</span>
+          <p>A very well-mannered and calm friend who is part of my friend circle. We met through a group meeting in Class 11.</p>
+        </div>
+        <div class="glass card friend-card">
+          <div class="card-icon">🏏</div>
+          <span class="friend-name">Pritam Das <span style="color:var(--ink-faint); font-weight:400;">(Dogla)</span></span>
+          <p>A helpful friend and cricketer/batsman who works hard toward his sporting ambitions. I met him after we shifted to our new house.</p>
+        </div>
+        <div class="glass card friend-card">
+          <div class="card-icon">🎒</div>
+          <span class="friend-name">Priyanshu Barman</span>
+          <p>A longtime friend and classmate from lower primary through high school. We studied together for many years, although we later attended different colleges.</p>
+        </div>
+        <div class="glass card friend-card">
+          <div class="card-icon">🤝</div>
+          <span class="friend-name">Akash Mandal</span>
+          <p>A friend I met in Class 5. After he moved to Siliguri Boys' High School, we lost contact for some time. We later met again and became part of the same friends circle.</p>
+        </div>
+      </div>
+
+      <div class="online-friends-panel reveal">
+        <h3>Online Gaming Friends</h3>
+        <p class="section-sub" style="margin-bottom:1rem;">I met these friends through CODM and online gaming.</p>
+        <div class="online-friend-list">
+          <span class="online-friend-chip"><span class="dot"></span>Vinayak Mohit Raj</span>
+          <span class="online-friend-chip"><span class="dot"></span>Ashish Guhan G</span>
+          <span class="online-friend-chip"><span class="dot"></span>Ashutosh Sharma</span>
+          <span class="online-friend-chip"><span class="dot"></span>Gourav</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TEACHERS
+       ============================================================ -->
+  <section class="section themed" id="teachers">
+    <div class="deco deco-dots" aria-hidden="true">
+      <span style="top:22%;left:14%;"></span><span style="top:64%;left:88%;animation-delay:.8s;"></span>
+    </div>
+    <div class="wrap section-inner">
+      <p class="eyebrow reveal">Gratitude</p>
+      <h2 class="section-title reveal">Teachers Who Helped Shape My Journey</h2>
+      <div class="glass card teacher-card reveal">
+        <div class="card-icon" style="margin:0 auto 1.1rem;">🎓</div>
+        <p class="teacher-desc">My teachers have helped me throughout my growing journey through knowledge, care, respect, motivation and guidance.</p>
+        <div class="teacher-names">
+          <span>Mounik Bhattacharyya Sir</span>
+          <span>Iswar Chandra Barman Sir</span>
+          <span>My high-school teachers and ma'am</span>
         </div>
       </div>
     </div>
@@ -782,14 +971,14 @@ You are a favourite of all.</p>
     <div class="wrap section-inner">
       <p class="eyebrow reveal">Beyond the classroom</p>
       <h2 class="section-title reveal">My Works Field</h2>
-      <p class="section-sub reveal">I am currently joining NSS as a volunteer. I work as a social worker to help society, clean nature, and contribute to the growth of our India.</p>
+      <p class="section-sub reveal">I am currently involved as an NSS volunteer. I participate in social work, helping society and supporting environmental cleanliness and growth.</p>
 
       <div class="glass card nss-card reveal">
         <div class="card-icon">🌱</div>
         <h3>NSS Volunteer</h3>
         <p>Community-focused service work close to home.</p>
         <div class="nss-tags">
-          <span>NSS Volunteer</span><span>Social Work</span><span>Community Support</span><span>Nature</span><span>Cleanliness</span>
+          <span>NSS Volunteer</span><span>Social Work</span><span>Environmental Awareness</span><span>Community Support</span><span>Nature &amp; Cleanliness</span><span>Learning Through Service</span>
         </div>
       </div>
     </div>
@@ -814,7 +1003,7 @@ You are a favourite of all.</p>
           <span class="tl-status">Current</span>
           <h3>B.A. Municipality Course</h3>
           <p class="tl-org">Surya Sen College, Siliguri</p>
-          <p class="tl-desc">Second-year undergraduate. Core focus areas: analysing Bengali poetry and grammar, understanding political theory, developing teaching skills, social work and website development.</p>
+          <p class="tl-desc">Second-year undergraduate. Core focus areas: Bengali poetry and grammar, political theory, Indian sociology, developing teaching skills, social work, a tourism internship and website development.</p>
         </div>
         <div class="tl-item done reveal">
           <span class="tl-dot"></span>
@@ -828,7 +1017,7 @@ You are a favourite of all.</p>
           <span class="tl-status">Completed</span>
           <h3>Secondary — Class 10, Madhyamik</h3>
           <p class="tl-org">Ghogomali High School (H.S)</p>
-          <p class="tl-desc">Built a strong grounding in Bengali, history, geography, mathematics, physical and life science, laying the groundwork for my later analytical and computational studies.</p>
+          <p class="tl-desc">Built a foundation in Bengali, English, history, geography, mathematics, physical science and life science, laying the groundwork for my later analytical and computational studies.</p>
         </div>
         <div class="tl-item done reveal">
           <span class="tl-dot"></span>
@@ -861,17 +1050,17 @@ You are a favourite of all.</p>
         <div class="glass sw-card reveal" id="weakness-anchor">
           <span class="tag" style="color:var(--sw-1);">Strength</span>
           <h3>Nonstop Work</h3>
-          <p>I work with a nonstop mindset attached to my favourite work. I am efficient and serious in this field.</p>
+          <p>I stay committed to the work I care about and try to remain efficient and serious in my areas of interest.</p>
           <div class="pulse-bar" role="img" aria-label="Continuous, steady effort indicator"><i></i></div>
           <span class="sw-note">A feel for dedication, not a lab measurement.</span>
         </div>
 
         <div class="glass sw-card reveal" id="weakness">
           <span class="tag" style="color:var(--sw-3);">Weakness</span>
-          <h3>Distraction at Work</h3>
-          <p>Bad environment and society can distract my work field, stop my work and productivity.</p>
+          <h3>Distraction</h3>
+          <p>Bad environments and distractions can affect my focus, work and productivity.</p>
           <div class="pulse-bar" role="img" aria-label="Awareness of distraction indicator"><i style="background:linear-gradient(90deg,var(--sw-3),var(--sw-2));"></i></div>
-          <p class="growth-line">🌱 I am continuously working on improving my focus, environment and productivity.</p>
+          <p class="growth-line">🌱 <strong>Improvement:</strong>&nbsp;I am continuously working on improving my focus, environment and productivity.</p>
         </div>
       </div>
     </div>
@@ -893,25 +1082,48 @@ You are a favourite of all.</p>
       <p class="section-sub reveal">The working set of abilities behind every project on this page.</p>
 
       <div class="grid-2 reveal-stagger">
-        <div class="glass card skill-card">
+        <div class="glass card skill-card" style="grid-column: span 2;">
           <span class="skill-num">01</span>
-          <div><h3>Analytical Problem Solving</h3><p>Breaking ambiguous problems into measurable parts and reasoning from data, not assumptions.</p></div>
+          <div>
+            <h3>Photo &amp; Video Editing</h3>
+            <p>I edit photos and videos, working with details such as sharpness, contrast, saturation, colour tone, frames, slow motion and other creative effects.</p>
+            <div class="tech-badges">
+              <span class="badge">Adobe Photoshop</span><span class="badge">Adobe Lightroom</span><span class="badge">Background Eraser</span>
+              <span class="badge">Photo Layers</span><span class="badge">Remini</span><span class="badge">CapCut</span>
+              <span class="badge">Grok AI</span><span class="badge">Gemini</span><span class="badge">Other AI &amp; editing apps</span>
+            </div>
+          </div>
         </div>
         <div class="glass card skill-card">
           <span class="skill-num">02</span>
-          <div><h3>Web Development — Frontend &amp; Backend</h3><p>Building responsive interfaces and wiring them to APIs, data and application logic.</p></div>
+          <div><h3>Analytical Problem Solving</h3><p>Breaking ambiguous problems into measurable parts and reasoning from data rather than assumptions. I try to collect information from different sources and perspectives.</p></div>
         </div>
         <div class="glass card skill-card">
           <span class="skill-num">03</span>
-          <div><h3>Communication &amp; Leadership</h3><p>Explaining technical ideas clearly and coordinating people around a shared goal.</p></div>
+          <div>
+            <h3>Web Development — Frontend &amp; Backend</h3>
+            <p>Building responsive interfaces and understanding APIs, data and application logic.</p>
+            <div class="tech-badges">
+              <span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span><span class="badge">Java</span>
+              <span class="badge">Python</span><span class="badge">C</span><span class="badge">C++</span><span class="badge">C#</span>
+            </div>
+          </div>
         </div>
         <div class="glass card skill-card">
           <span class="skill-num">04</span>
-          <div><h3>Research &amp; Continuous Learning</h3><p>Reading primary sources, verifying claims and turning findings into practical work.</p></div>
+          <div><h3>Communication &amp; Leadership</h3><p>Explaining technical ideas clearly and coordinating people around a shared goal.</p></div>
         </div>
-        <div class="glass card skill-card" style="grid-column: span 2;">
+        <div class="glass card skill-card">
           <span class="skill-num">05</span>
-          <div><h3>Creative Thinking</h3><p>Thinking about different topics creatively and solving problems by discovering different possible ways to work.</p></div>
+          <div><h3>Research &amp; Continuous Learning</h3><p>Reading sources, researching information, participating in discussions, verifying claims and turning findings into practical work.</p></div>
+        </div>
+        <div class="glass card skill-card">
+          <span class="skill-num">06</span>
+          <div><h3>Creative Thinking</h3><p>Thinking about different topics, developing creative ideas and exploring multiple ways to solve problems.</p></div>
+        </div>
+        <div class="glass card skill-card">
+          <span class="skill-num">07</span>
+          <div><h3>Upgraded Ideas</h3><p>New ideas, new knowledge and new expressions. I continuously try to improve my projects and ideas.</p></div>
         </div>
       </div>
     </div>
@@ -931,54 +1143,59 @@ You are a favourite of all.</p>
       <h2 class="section-title reveal">Areas of Interest &amp; Knowledge</h2>
 
       <div class="grid-auto reveal-stagger">
+        <div class="glass card curio-card" style="--card-accent:#8b5cf6;">
+          <div class="card-icon">🧬</div>
+          <h3>Machine Learning</h3>
+          <p>Interested in understanding how computers process information, algorithms and machine intelligence.</p>
+        </div>
         <div class="glass card curio-card" style="--card-accent:#06b6d4;">
           <div class="card-icon">🔌</div>
-          <h3>Electronics &amp; Electrical PCB Design</h3>
-          <p>The language I think in — precise, elegant and endlessly deep. I explore different PCB models, modules and motherboards, observe circuit diagrams, and research how they're built through online platforms and AI.</p>
+          <h3>Electronics &amp; PCB Design</h3>
+          <p>Interested in PCB models, modules, motherboard connections, components and circuit diagrams, with ongoing electronics research.</p>
         </div>
         <div class="glass card curio-card" style="--card-accent:#14b8a6;">
           <div class="card-icon">🧲</div>
           <h3>Electronics Science</h3>
-          <p>Exploring components such as capacitors, transistors, resistors, diodes and LEDs that quietly power real systems.</p>
+          <p>Interested in ICs, SoCs, capacitors, transistors, resistors, diodes, LEDs and other electronic components.</p>
         </div>
         <div class="glass card curio-card" style="--card-accent:#64748b;">
           <div class="card-icon">⚙️</div>
           <h3>Mechanical Science</h3>
-          <p>Knowledge of torque, RPM, different types of petrol and diesel engines, tools, nuts and bolts.</p>
+          <p>Interested in torque, RPM, petrol and diesel engines, tools, nuts and bolts, and mechanical systems.</p>
         </div>
         <div class="glass card curio-card" style="--card-accent:#1e40af;">
           <div class="card-icon">🔋</div>
           <h3>Home Electrical &amp; Motor Wiring</h3>
-          <p>Knowledge of home electrical wiring and motor wiring, including the difference between neutral and phase lines, electronic switches and plugs.</p>
+          <p>Interested in understanding phase and neutral lines, electrical switches, plugs, motor wiring and basic electrical systems. An educational interest, not a professional certification.</p>
         </div>
         <div class="glass card curio-card" style="--card-accent:#d4af37;">
           <div class="card-icon">🗳️</div>
           <h3>Indian Politics</h3>
-          <p>Reading policy and elections through data rather than noise, with an interest in public speaking and communication.</p>
+          <p>Interested in studying political systems, the Constitution, elections, Parliament, the Prime Minister, Chief Ministers, cabinet ministers, the High Court, the Supreme Court, public institutions and policy — an academic and personal interest, not political campaigning.</p>
         </div>
         <div class="glass card curio-card" style="--card-accent:#7f1d3a;">
           <div class="card-icon">📰</div>
           <h3>Current Affairs</h3>
-          <p>Tracking daily developments to spot patterns early.</p>
+          <p>Tracking daily developments to identify patterns and understand society and the country.</p>
         </div>
         <div class="glass card curio-card" style="--card-accent:#22d3ee;">
           <div class="card-icon">🧠</div>
           <h3>Technology</h3>
-          <p>Fascinated by how computation turns theory into tools.</p>
+          <p>Fascinated by how computation turns theory into useful tools, especially AI, robotics and emerging technologies.</p>
         </div>
         <div class="glass card curio-card" style="--card-accent:#3b82f6;">
           <div class="card-icon">🌐</div>
           <h3>Web Development</h3>
-          <p>Turning abstract logic into interfaces people can actually use.</p>
+          <p>Interested in building interfaces that turn abstract logic into things people can actually use.</p>
           <div class="tech-badges">
-            <span class="badge">Java</span><span class="badge">Python</span><span class="badge">HTML</span><span class="badge">C</span>
-            <span class="badge">C++</span><span class="badge">C#</span><span class="badge">CSS</span><span class="badge">JavaScript</span>
+            <span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span><span class="badge">Java</span>
+            <span class="badge">Python</span><span class="badge">C</span><span class="badge">C++</span><span class="badge">C#</span>
           </div>
         </div>
-        <div class="glass card curio-card" style="--card-accent:#8b5cf6;">
+        <div class="glass card curio-card" style="--card-accent:#ff8fab;">
           <div class="card-icon">🎞️</div>
-          <h3>Animations</h3>
-          <p>I build animation and I love animation, video creativity and modern digital experiences.</p>
+          <h3>Animation</h3>
+          <p>I love animation, visual creativity and exploring modern digital animation.</p>
         </div>
       </div>
     </div>
@@ -996,7 +1213,10 @@ You are a favourite of all.</p>
         <div class="ambition-ring a1" aria-hidden="true"></div>
         <div class="ambition-ring a2" aria-hidden="true"></div>
         <div class="ambition-orbit" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-        <p>To build a meaningful career by seamlessly combining the rigour of machine learning and generative AI with the scalability of modern technology, leveraging analytical thinking to solve complex, real-world problems.</p>
+        <p>To build a meaningful career by combining machine learning, generative AI and modern technology with analytical thinking to solve complex real-world problems, meet new people, build friendships and collaborate through group work.</p>
+        <div class="ambition-flow" aria-label="Learn, Think, Build, Explore, Improve">
+          <span>Learn</span><span class="arrow">→</span><span>Think</span><span class="arrow">→</span><span>Build</span><span class="arrow">→</span><span>Explore</span><span class="arrow">→</span><span>Improve</span>
+        </div>
       </div>
     </div>
   </section>
@@ -1025,6 +1245,10 @@ You are a favourite of all.</p>
             <span class="ic">📍</span>
             <div><span class="label">Based in</span><br><span class="value">Siliguri, West Bengal, India</span></div>
           </div>
+          <div class="contact-detail">
+            <span class="ic">💻</span>
+            <div><span class="label">GitHub</span><br><a class="value" href="https://github.com/avijitsaha734010-ops/Portfolio-" target="_blank" rel="noopener noreferrer">github.com/avijitsaha734010-ops/Portfolio-</a></div>
+          </div>
         </div>
 
         <form class="glass form-card reveal" id="contactForm" novalidate>
@@ -1051,7 +1275,7 @@ You are a favourite of all.</p>
           </button>
           <div class="form-success" id="formSuccess" role="status">
             <span>✓</span>
-            <span>Thanks — your message is ready. This form is front-end only for now, so nothing was actually delivered; connect it to an email service to go live.</span>
+            <span>Your message is ready. Connect this form to a backend or form service to enable real message delivery.</span>
           </div>
         </form>
       </div>
@@ -1067,17 +1291,21 @@ You are a favourite of all.</p>
   <div class="wrap">
     <div class="footer-top">
       <div>
-        <div class="footer-brand">Avijit.S | IDENTITY</div>
-        <div class="footer-tag">Analytical Mind • Creative Builder • Continuous Learner</div>
+        <div class="footer-brand">Avijit.S — IDENTITY</div>
+        <div class="footer-tag">Learning • Creating • Exploring • Improving</div>
       </div>
       <nav class="footer-links" aria-label="Footer">
-        <a href="#profile">Profile</a><a href="#education">Education</a><a href="#skills">Skills</a><a href="#curiosity">Curiosity</a><a href="#contact">Contact</a>
+        <a href="#profile">Profile</a><a href="#education">Education</a><a href="#skills">Skills</a><a href="#curiosity">Curiosity</a>
+        <a href="https://github.com/avijitsaha734010-ops/Portfolio-" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="#home">Back to top</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Avijit.S — Identity Portfolio</span>
       <span>Technology • Nature • Education • Creativity • Curiosity</span>
     </div>
+    <p class="footer-thanks">Thank you for visiting 😃😊</p>
   </div>
 </footer>
 
