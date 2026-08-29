@@ -113,8 +113,13 @@ header#tribute-nav.scrolled .nav-inner{ background:rgba(8,10,20,0.85); box-shado
 .nav-links a:hover{ color:var(--ink); }
 .nav-links a:hover::after, .nav-links a.active::after{ width:100%; }
 .nav-links a.active{ color:var(--ink); }
-.back-link{ display:inline-flex; align-items:center; gap:.4rem; font-size:.78rem; color:var(--ink-dim); border:1px solid var(--border); padding:.5rem .9rem; border-radius:999px; transition:border-color .3s var(--ease), color .3s var(--ease); white-space:nowrap; }
-.back-link:hover{ color:var(--ink); border-color:var(--gold); }
+.back-link{
+  display:inline-flex; align-items:center; gap:.45rem; font-size:.8rem; font-weight:700; white-space:nowrap;
+  padding:.55rem 1.1rem; border-radius:999px; color:#0a0d1a;
+  background:linear-gradient(135deg, var(--gold), var(--sakura-deep)); border:1px solid transparent;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.back-link:hover{ transform:translateY(-2px); box-shadow:0 10px 24px -8px rgba(212,175,55,.55); }
 .nav-toggle{ display:none; background:none; border:1px solid var(--border); border-radius:10px; width:38px; height:38px; align-items:center; justify-content:center; position:relative; }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{ content:''; position:absolute; width:16px; height:1.6px; background:var(--ink); border-radius:2px; transition:transform .3s var(--ease), background .3s var(--ease), top .3s var(--ease); }
 .nav-toggle span{ top:50%; transform:translateY(-50%); }
@@ -152,8 +157,13 @@ header#tribute-nav.scrolled .nav-inner{ background:rgba(8,10,20,0.85); box-shado
 }
 @keyframes float-avatar{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
 .hero-avatar span{ font-family:Georgia,serif; font-size:2rem; font-weight:700; }
-.hero-back{ display:inline-flex; align-items:center; gap:.5rem; margin-top:1.6rem; font-size:.85rem; color:var(--ink-dim); border-bottom:1px dashed var(--border); padding-bottom:.2rem; transition:color .3s var(--ease); }
-.hero-back:hover{ color:var(--gold); }
+.hero-back{
+  display:inline-flex; align-items:center; gap:.55rem; margin-top:1.8rem; font-size:.88rem; font-weight:700;
+  padding:.85rem 1.5rem; border-radius:999px; color:#0a0d1a;
+  background:linear-gradient(135deg, var(--gold), var(--sakura-deep)); border:1px solid transparent;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.hero-back:hover{ transform:translateY(-3px); box-shadow:0 14px 30px -10px rgba(212,175,55,.55); }
 
 /* ---- Content cards ---- */
 .tribute-card{ padding:2.1rem clamp(1.4rem,4vw,2.4rem); }
@@ -184,6 +194,17 @@ header#tribute-nav.scrolled .nav-inner{ background:rgba(8,10,20,0.85); box-shado
 
 /* ---- My message footnote ---- */
 .footnote{ margin-top:2rem; padding:1.1rem 1.3rem; border-radius:12px; background:rgba(139,125,255,.08); border:1px solid rgba(139,125,255,.25); font-size:.86rem; color:var(--ink-faint); font-style:italic; }
+
+/* ---- Prominent "Back to Portfolio" CTA button ---- */
+.cta-row{ display:flex; justify-content:center; margin-top:2.4rem; }
+.btn-portfolio{
+  position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:.6rem;
+  padding:1rem 1.8rem; border-radius:999px; font-weight:700; font-size:.95rem;
+  background:linear-gradient(135deg, var(--gold), var(--sakura-deep));
+  color:#0a0d1a; border:1px solid transparent;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.btn-portfolio:hover{ transform:translateY(-3px); box-shadow:0 16px 34px -12px rgba(212,175,55,.5); }
 
 /* ---- Footer ---- */
 footer{ border-top:1px solid var(--border); padding:2.6rem 0 2rem; position:relative; z-index:2; background:var(--base-navy-2); text-align:center; }
@@ -224,7 +245,7 @@ footer{ border-top:1px solid var(--border); padding:2.6rem 0 2rem; position:rela
       <a href="#poem" data-nav>Poem</a>
       <a href="#acknowledgement" data-nav>Acknowledgement</a>
     </nav>
-    <a href="index.html" class="back-link">← Back to Portfolio</a>
+    <a href="index.html" class="back-link">← Back to Avijit Portfolio</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobilePanel">
       <span></span>
     </button>
@@ -237,7 +258,7 @@ footer{ border-top:1px solid var(--border); padding:2.6rem 0 2rem; position:rela
   <a href="#how-met" data-nav>How I Met Him</a>
   <a href="#poem" data-nav>Poem</a>
   <a href="#acknowledgement" data-nav>Acknowledgement</a>
-  <a href="index.html">← Back to Portfolio</a>
+  <a href="index.html" style="color:var(--gold); font-weight:700;">← Back to Avijit Portfolio</a>
 </div>
 
 <main id="main">
@@ -263,7 +284,7 @@ footer{ border-top:1px solid var(--border); padding:2.6rem 0 2rem; position:rela
       <div class="hero-avatar reveal" aria-hidden="true"><span>MB</span></div>
       <h1 class="hero-title reveal">I Find the Best Teacher<span class="accent">.</span></h1>
       <p class="hero-name reveal">(Mounik Bhattacharyya)</p>
-      <a href="index.html" class="hero-back reveal">← Back to Avijit.S | IDENTITY</a>
+      <a href="index.html" class="hero-back reveal">← Back to Avijit Portfolio</a>
     </div>
   </section>
 
@@ -292,8 +313,8 @@ footer{ border-top:1px solid var(--border); padding:2.6rem 0 2rem; position:rela
         <div class="card-icon">💡</div>
         <p>His talents include generative AI, website design, Java, computer science, machine learning and deep learning. He is currently pursuing a B.Tech degree, having completed his 10th and 12th in the Science stream.</p>
         <div class="talent-badges">
-          <span>Generative AI</span><span>Website Design</span><span>Java</span>
-          <span>Computer Science</span><span>Machine Learning</span><span>Deep Learning</span>
+          <span>Generative AI</span><span>Website Design</span><span>HTML</span><span>Java</span><span>CSS</span><span>JavaScript</span><span>C</span>
+          <span>Computer Science</span><span>C++</span><span>C#</span><span>Machine Learning</span><span>Deep Learning</span><span>mathematics </span>
         </div>
       </div>
     </div>
@@ -366,6 +387,13 @@ Goodbye, Sir. Thank you for everything 🌸🌸😊😊.</p>
       <div class="footnote reveal">
         My message: I used ChatGPT to help rewrite this poem a little faster — sorry, I'm still learning English grammar. I will try to write my poems entirely by myself next time.
       </div>
+
+      <div class="cta-row reveal">
+        <a href="index.html" class="btn-portfolio">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to Avijit Portfolio
+        </a>
+      </div>
     </div>
   </section>
 
@@ -377,7 +405,7 @@ Goodbye, Sir. Thank you for everything 🌸🌸😊😊.</p>
 <footer>
   <div class="wrap" style="text-align:center;">
     <div class="footer-links">
-      <a href="index.html">← Back to Portfolio</a>
+      <a href="index.html" class="back-link">← Back to Avijit Portfolio</a>
       <a href="#hero" id="footerTop">Back to top</a>
     </div>
     <div class="footer-bottom">© <span id="year"></span> Avijit Saha — A tribute to Mounik Bhattacharyya Sir</div>
